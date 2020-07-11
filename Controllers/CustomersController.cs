@@ -23,8 +23,8 @@ namespace TrashManagement.Controllers
         // GET: Customers
         public async Task<IActionResult> Index()
         {
-            var context = _context.Customers.Include(c => c.IdentityUser);
-            return View(await context.ToListAsync());
+            var applicationDbContext = _context.Customers.Include(c => c.IdentityUser);
+            return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: Customers/Details/5
@@ -67,7 +67,7 @@ namespace TrashManagement.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["IdentityUserId"] = new SelectList(_context.Set<IdentityUser>(), "Id", "Id", customer.IdentityUserId);
-            return View(customer);
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Customers/Edit/5
