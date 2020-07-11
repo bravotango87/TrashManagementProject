@@ -26,14 +26,8 @@ namespace TrashManagement.Controllers
         // GET: Customers
         public async Task<IActionResult> Index()
         {
-            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var customer = _context.Customers.Where(c => c.IdentityUserId == userId).SingleOrDefault();
-            if (customer == null)
-            {
-                return RedirectToAction("Create");
-            }
-
-            return View(customer);
+            var applicationDbContext = _context.Customers.Include(c => c.IdentityUser);
+            return View(await applicationDbContext.ToListAsync());
         }
     
 
@@ -79,7 +73,7 @@ namespace TrashManagement.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["IdentityUserId"] = new SelectList(_context.Set<IdentityUser>(), "Id", "Id", customer.IdentityUserId);
-            return RedirectToAction(nameof(Index));
+            return View(customer);
         }
 
         // GET: Customers/Edit/5
