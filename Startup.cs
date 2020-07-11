@@ -35,7 +35,7 @@ namespace TrashManagement
             services.AddControllersWithViews();
             services.AddRazorPages();
 
-            services.AddDbContext<Context>(options =>
+            services.AddDbContext<ApplicationDbContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("Context")));
         }
 
