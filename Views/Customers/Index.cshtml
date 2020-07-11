@@ -8,11 +8,11 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Signup For Service</a>
     <br>
     <br>
     <br>
-    <a asp-action="Edit">Modify Your Account</a>
+    
 
 
 </p>
@@ -85,6 +85,7 @@
                 |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.Id">Add/Change Service</a>
             </td>
         </tr>
 }

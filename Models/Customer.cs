@@ -37,7 +37,7 @@ namespace TrashManagement.Models
         [Display(Name = "Trash Pickup Day")]
         public string PickupDay { get; set; }
 
-        [Display(Name = "Extra Pick Day)")]
+        [Display(Name = "Extra Pick Day")]
 
         public string ExtraPickup { get; set; }
 
