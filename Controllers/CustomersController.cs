@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -12,9 +13,9 @@ namespace TrashManagement.Controllers
 {
     public class CustomersController : Controller
     {
-        private readonly Context _context;
-
-        public CustomersController(Context context)
+        private readonly ApplicationDbContext _context;
+          
+        public CustomersController(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -22,7 +23,7 @@ namespace TrashManagement.Controllers
         // GET: Customers
         public async Task<IActionResult> Index()
         {
-            var context = _context.Customer.Include(c => c.IdentityUser);
+            var context = _context.Customers.Include(c => c.IdentityUser);
             return View(await context.ToListAsync());
         }
 
@@ -34,7 +35,7 @@ namespace TrashManagement.Controllers
                 return NotFound();
             }
 
-            var customer = await _context.Customer
+            var customer = await _context.Customers
                 .Include(c => c.IdentityUser)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (customer == null)
@@ -77,7 +78,7 @@ namespace TrashManagement.Controllers
                 return NotFound();
             }
 
-            var customer = await _context.Customer.FindAsync(id);
+            var customer = await _context.Customers.FindAsync(id);
             if (customer == null)
             {
                 return NotFound();
@@ -130,7 +131,7 @@ namespace TrashManagement.Controllers
                 return NotFound();
             }
 
-            var customer = await _context.Customer
+            var customer = await _context.Customers
                 .Include(c => c.IdentityUser)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (customer == null)
@@ -146,15 +147,15 @@ namespace TrashManagement.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var customer = await _context.Customer.FindAsync(id);
-            _context.Customer.Remove(customer);
+            var customer = await _context.Customers.FindAsync(id);
+            _context.Customers.Remove(customer);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool CustomerExists(int id)
         {
-            return _context.Customer.Any(e => e.Id == id);
+            return _context.Customers.Any(e => e.Id == id);
         }
     }
 }
