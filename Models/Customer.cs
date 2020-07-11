@@ -29,6 +29,7 @@ namespace TrashManagement.Models
         [Display(Name = "Zip Code")]
         public int ZipCode { get; set; }
 
+        [Display(Name ="How Much You Owe")]
         public double Balance { get; set; }
 
 
@@ -37,7 +38,7 @@ namespace TrashManagement.Models
         [Display(Name = "Trash Pickup Day")]
         public string PickupDay { get; set; }
 
-        [Display(Name = "Extra Pick Day")]
+        [Display(Name = "One Time Extra Pickup")]
 
         public string ExtraPickup { get; set; }
 
