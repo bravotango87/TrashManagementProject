@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -11,7 +12,7 @@ using TrashManagement.Models;
 
 namespace TrashManagement.Controllers
 {
-    [Authorize(Roles ="Employee")]
+    
     public class EmployeesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -24,8 +25,7 @@ namespace TrashManagement.Controllers
         // GET: Employees
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Employees.Include(e => e.identityUser);
-            return View(await applicationDbContext.ToListAsync());
+            return View(await _context.Employees.ToListAsync());
         }
 
         // GET: Employees/Details/5
@@ -50,7 +50,7 @@ namespace TrashManagement.Controllers
         // GET: Employees/Create
         public IActionResult Create()
         {
-            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id");
+           
             return View();
         }
 
@@ -68,10 +68,10 @@ namespace TrashManagement.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", employee.IdentityUserId);
-            return RedirectToAction(nameof(Index));
+            return View(employee);
         }
 
-        // GET: Employees/Edit/5
+        // GET: Employees/Edit/5 
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -157,6 +157,11 @@ namespace TrashManagement.Controllers
         private bool EmployeeExists(int id)
         {
             return _context.Employees.Any(e => e.Id == id);
+        }
+
+        public IActionResult TodaysPickup()
+        {
+            return View();
         }
     }
 }

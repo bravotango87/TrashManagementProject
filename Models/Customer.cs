@@ -36,7 +36,7 @@ namespace TrashManagement.Models
 
 
         [Display(Name = "Trash Pickup Day")]
-        public string PickupDay { get; set; }
+        public string TrashDay { get; set; }
 
         [Display(Name = "One Time Extra Pickup")]
 
@@ -54,10 +54,12 @@ namespace TrashManagement.Models
 
 
 
+        [NotMapped]
+
+        public List<PickupDay> PickupDays { get; set; }
 
 
-
-
+       
 
 
 

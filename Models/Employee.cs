@@ -23,7 +23,7 @@ namespace TrashManagement.Models
 
         [Display(Name = "Zip Code")]
          
-        public string ZipCode { get; set; }
+        public int ZipCode { get; set; }
 
 
 
