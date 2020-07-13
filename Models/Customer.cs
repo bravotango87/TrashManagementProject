@@ -40,18 +40,21 @@ namespace TrashManagement.Models
 
         [Display(Name = "One Time Extra Pickup")]
 
-        public string ExtraPickup { get; set; }
+        public DateTime ExtraPickup { get; set; }
 
 
 
 
 
         [Display(Name = "Request To Start Suspension Of Pickup")]
-        public string StartSuspend { get; set; }
+        public DateTime StartSuspend { get; set; }
 
         [Display(Name = "Request To End Suspension Of Pickup")]
-        public string EndSuspend { get; set; }
+        public DateTime EndSuspend { get; set; }
 
+        [Display(Name ="Pickup Complete")]
+
+        public bool pickupComplete { get; set; }
 
 
         [NotMapped]

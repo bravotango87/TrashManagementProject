@@ -3,17 +3,15 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TrashManagement.Data;
 
-namespace TrashManagement.Data.Migrations
+namespace TrashManagement.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200713011844_Fghghgfg")]
-    partial class Fghghgfg
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,15 +48,15 @@ namespace TrashManagement.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "baae36ca-7772-4893-b68f-e2a1ad7d6337",
-                            ConcurrencyStamp = "f5eb74d4-9330-4fa7-9ee5-17378494243e",
+                            Id = "c1e2c9df-ac40-4f0c-93cc-07ca1b3fcf3d",
+                            ConcurrencyStamp = "a92f34e0-7e5d-45a3-8d6b-1066f8048ff2",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         },
                         new
                         {
-                            Id = "108c4c79-633e-4732-bf24-b1b464a880f4",
-                            ConcurrencyStamp = "5722a8ec-e8bf-4125-8b3f-e2c8a5dd510a",
+                            Id = "a17de066-0b8b-4321-a904-fcef8338f474",
+                            ConcurrencyStamp = "fc2d845b-0d12-472d-a0da-5332fc7b9b9e",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         });
@@ -243,11 +241,11 @@ namespace TrashManagement.Data.Migrations
                     b.Property<double>("Balance")
                         .HasColumnType("float");
 
-                    b.Property<string>("EndSuspend")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("EndSuspend")
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("ExtraPickup")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("ExtraPickup")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
@@ -258,8 +256,8 @@ namespace TrashManagement.Data.Migrations
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("StartSuspend")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("StartSuspend")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("StreetAddress")
                         .HasColumnType("nvarchar(max)");
@@ -269,6 +267,9 @@ namespace TrashManagement.Data.Migrations
 
                     b.Property<int>("ZipCode")
                         .HasColumnType("int");
+
+                    b.Property<bool>("pickupComplete")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 

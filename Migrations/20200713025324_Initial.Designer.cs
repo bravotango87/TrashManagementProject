@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TrashManagement.Data;
 
-namespace TrashManagement.Data.Migrations
+namespace TrashManagement.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200711232350_Newday")]
-    partial class Newday
+    [Migration("20200713025324_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -50,15 +50,15 @@ namespace TrashManagement.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "ad41a563-acd2-4283-86bb-1a1d20d156cf",
-                            ConcurrencyStamp = "3da89faa-76b6-41a0-96e9-65fe0d540988",
+                            Id = "c1e2c9df-ac40-4f0c-93cc-07ca1b3fcf3d",
+                            ConcurrencyStamp = "a92f34e0-7e5d-45a3-8d6b-1066f8048ff2",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         },
                         new
                         {
-                            Id = "bade78d1-38ca-4355-a5f0-c8ed5089d85d",
-                            ConcurrencyStamp = "a23ab285-607c-4571-87fe-d352d492565e",
+                            Id = "a17de066-0b8b-4321-a904-fcef8338f474",
+                            ConcurrencyStamp = "fc2d845b-0d12-472d-a0da-5332fc7b9b9e",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         });
@@ -243,11 +243,11 @@ namespace TrashManagement.Data.Migrations
                     b.Property<double>("Balance")
                         .HasColumnType("float");
 
-                    b.Property<string>("EndSuspend")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("EndSuspend")
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("ExtraPickup")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("ExtraPickup")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
@@ -258,17 +258,20 @@ namespace TrashManagement.Data.Migrations
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PickupDay")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("StartSuspend")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("StartSuspend")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("StreetAddress")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("TrashDay")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("ZipCode")
                         .HasColumnType("int");
+
+                    b.Property<bool>("pickupComplete")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
@@ -293,14 +296,32 @@ namespace TrashManagement.Data.Migrations
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ZipCode")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("ZipCode")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("IdentityUserId");
 
                     b.ToTable("Employees");
+                });
+
+            modelBuilder.Entity("TrashManagement.Models.PickupDay", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Day")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsPickedUp")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PickupDays");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
