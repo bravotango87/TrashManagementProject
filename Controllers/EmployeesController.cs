@@ -175,8 +175,11 @@ namespace TrashManagement.Controllers
             return _context.Employees.Any(e => e.Id == id);
         }
 
-        public IActionResult TodaysPickup()
+        public IActionResult Confirmed(int id)
         {
+            var customer = _context.Customers.Where(c => c.Id == id).SingleOrDefault();
+            customer.pickupComplete = true;
+            _context.SaveChanges();
             return View();
         }
     }

@@ -5,10 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Hello ! Here is todays trash pickups.</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    
 </p>
 <table class="table">
     <thead>
@@ -53,6 +53,9 @@
            
             <td>
                 @Html.DisplayFor(modelItem => item.pickupComplete)
+                <input id="Checkbox1" type="checkbox" />
+
+                <a asp-action="Confirmed" asp-route-id="@item.Id">Confirm Trash Pickup</a>
             </td>
             
            
