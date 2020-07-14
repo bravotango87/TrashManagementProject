@@ -179,6 +179,7 @@ namespace TrashManagement.Controllers
         {
             var customer = _context.Customers.Where(c => c.Id == id).SingleOrDefault();
             customer.pickupComplete = true;
+            customer.Balance += 5;
             _context.SaveChanges();
             return View();
         }
