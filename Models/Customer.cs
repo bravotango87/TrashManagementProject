@@ -46,11 +46,11 @@ namespace TrashManagement.Models
 
 
 
-        [Display(Name = "Request To Start Suspension Of Pickup")]
-        public DateTime StartSuspend { get; set; }
+        [Display(Name = "Suspension Of Pickup")]
+        public string StartSuspend { get; set; }
 
-        [Display(Name = "Request To End Suspension Of Pickup")]
-        public DateTime EndSuspend { get; set; }
+        [Display(Name = "End Suspension Of Pickup")]
+        public DateTime? EndSuspend { get; set; }
 
         [Display(Name ="Pickup Complete")]
 

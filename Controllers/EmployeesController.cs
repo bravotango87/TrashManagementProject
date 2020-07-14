@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +13,7 @@ using TrashManagement.Models;
 
 namespace TrashManagement.Controllers
 {
+    [Authorize(Roles ="Employee")]
     
     public class EmployeesController : Controller
     {
@@ -23,9 +25,21 @@ namespace TrashManagement.Controllers
         }
 
         // GET: Employees
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            return View(await _context.Employees.ToListAsync());
+            
+
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var employee = _context.Employees.Where(c => c.IdentityUserId == userId).SingleOrDefault();
+            string todayIs = DateTime.Now.DayOfWeek.ToString();
+
+            if (employee == null)
+            {
+                return RedirectToAction("Create");
+            }
+
+            var customerZipcode = _context.Customers.Where(c => c.ZipCode == employee.ZipCode && c.TrashDay == todayIs).ToList();
+            return View(customerZipcode.ToList());
         }
 
         // GET: Employees/Details/5
@@ -50,7 +64,8 @@ namespace TrashManagement.Controllers
         // GET: Employees/Create
         public IActionResult Create()
         {
-           
+
+            
             return View();
         }
 
@@ -63,12 +78,13 @@ namespace TrashManagement.Controllers
         {
             if (ModelState.IsValid)
             {
+                employee.IdentityUserId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
                 _context.Add(employee);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", employee.IdentityUserId);
-            return View(employee);
+            return RedirectToAction("Index");
         }
 
         // GET: Employees/Edit/5 

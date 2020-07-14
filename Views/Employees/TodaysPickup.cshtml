@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TrashManagement.Models.Customer>
+﻿@model TrashManagement.Models.Customer
 
 @{
     ViewData["Title"] = "TodaysPickup";
@@ -7,9 +7,7 @@
 
 <h1>TodaysPickup</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
 <table class="table">
     <thead>
         <tr>
@@ -20,9 +18,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.LastName)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StreetAddress)
-            </th>
+            
             <th>
                 @Html.DisplayNameFor(model => model.ZipCode)
             </th>
@@ -34,20 +30,18 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+
         <tr>
             
             <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
+                @Html.DisplayFor(model => model.FirstName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.LastName)
+                @Html.DisplayFor(model => model.LastName)
             </td>
+            
             <td>
-                @Html.DisplayFor(modelItem => item.StreetAddress)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ZipCode)
+                @Html.DisplayFor(model => model.ZipCode)
             </td>
             
             <td>
@@ -56,6 +50,6 @@
                 @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
             </td>
         </tr>
-}
+
     </tbody>
 </table>

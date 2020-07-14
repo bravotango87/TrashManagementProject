@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TrashManagement.Models.Customer>
+﻿@model TrashManagement.Models.Customer
 
 @{
     ViewData["Title"] = "Index";
@@ -8,17 +8,12 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Signup For Service</a>
-    <br>
-    <br>
-    <br>
-    
-      
-
+    <a asp-action="Create">Create New</a>
 </p>
 <table class="table">
     <thead>
         <tr>
+            
             <th>
                 @Html.DisplayNameFor(model => model.FirstName)
             </th>
@@ -46,48 +41,54 @@
             <th>
                 @Html.DisplayNameFor(model => model.EndSuspend)
             </th>
-            
+            <th>
+                @Html.DisplayNameFor(model => model.pickupComplete)
+            </th>
+           
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+
         <tr>
+            
             <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
+                @Html.DisplayFor(model => model.FirstName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.LastName)
+                @Html.DisplayFor(model => model.LastName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.StreetAddress)
+                @Html.DisplayFor(model => model.StreetAddress)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ZipCode)
+                @Html.DisplayFor(model => model.ZipCode)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Balance)
+                @Html.DisplayFor(model => model.Balance)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TrashDay)
+                @Html.DisplayFor(model => model.TrashDay)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ExtraPickup)
+                @Html.DisplayFor(model => model.ExtraPickup)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.StartSuspend)
+                @Html.DisplayFor(model => model.StartSuspend)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.EndSuspend)
+                @Html.DisplayFor(model => model.EndSuspend)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.pickupComplete)
             </td>
             
             <td>
-                |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                <a asp-action="Edit" asp-route-id="@item.Id">Add/Change Service</a>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
             </td>
         </tr>
-}
+
     </tbody>
 </table>
