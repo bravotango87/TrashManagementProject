@@ -183,5 +183,9 @@ namespace TrashManagement.Controllers
             _context.SaveChanges();
             return View();
         }
+
+       
+
+        
     }
 }

@@ -8,7 +8,17 @@
 <h1>Hello ! Here is todays trash pickups.</h1>
 
 <p>
-    
+    <div class="form-group">
+        @*<label asp-for="TrashDay" class="control-label"></label>*@
+        <select data-val="true" data-val-required="The Person field is required." id="Person" name="Person">
+            <option value="">Select A Day</option>
+            <option value="1">Monday</option>
+            <option value="2">Tuesday</option>
+            <option value="3">Wednesday</option>
+            <option value="4">Thursday</option>
+        </select>
+        @*<span asp-validation-for="TrashDay" class="text-danger"></span>*@
+    </div>
 </p>
 <table class="table">
     <thead>
