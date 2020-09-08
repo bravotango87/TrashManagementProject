@@ -25,6 +25,10 @@ namespace TrashManagement.Models
 
         public string StreetAddress { get; set; }
        
+        [Display(Name = "Property Type")]
+
+        public string PropertyType { get; set; }
+
 
         [Display(Name = "Zip Code")]
         public int ZipCode { get; set; }
@@ -34,7 +38,7 @@ namespace TrashManagement.Models
 
 
 
-
+         
         [Display(Name = "Trash Pickup Day")]
         public string TrashDay { get; set; }
 
@@ -42,6 +46,9 @@ namespace TrashManagement.Models
 
         public DateTime ExtraPickup { get; set; }
 
+        [Display(Name ="Type of Material")]
+
+        public string PickupType { get; set; }
 
 
 
