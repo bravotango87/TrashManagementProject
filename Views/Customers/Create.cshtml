@@ -2,10 +2,9 @@
 
 @{
     ViewData["Title"] = "Create";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Create</h1>
+<h1>Create an account and sign up for service.</h1>
 
 <h4>Customer</h4>
 <hr />
@@ -14,44 +13,132 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
+            <div hidden class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <input asp-for="Id" class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+
+            <div hidden class="form-group">
+                <label asp-for="CustomerKey" class="control-label"></label>
+                <input asp-for="CustomerKey" class="form-control" />
+                <span asp-validation-for="CustomerKey" class="text-danger"></span>
+            </div>
+
+
             <div class="form-group">
                 <label asp-for="FirstName" class="control-label"></label>
                 <input asp-for="FirstName" class="form-control" />
                 <span asp-validation-for="FirstName" class="text-danger"></span>
             </div>
+
+
             <div class="form-group">
                 <label asp-for="LastName" class="control-label"></label>
                 <input asp-for="LastName" class="form-control" />
                 <span asp-validation-for="LastName" class="text-danger"></span>
             </div>
+
+
             <div class="form-group">
                 <label asp-for="StreetAddress" class="control-label"></label>
                 <input asp-for="StreetAddress" class="form-control" />
                 <span asp-validation-for="StreetAddress" class="text-danger"></span>
             </div>
+
+
+            <div class="form-group">
+                <label asp-for="PropertyType" class="control-label"></label>
+                <select id="PropertyType" name="PropertyType">
+                    <option value="House">House</option>
+                    <option value="Business">Business</option>
+                    <option value="Construction">Construction Site</option>
+                </select>
+            </div>
+
+
             <div class="form-group">
                 <label asp-for="ZipCode" class="control-label"></label>
                 <input asp-for="ZipCode" class="form-control" />
                 <span asp-validation-for="ZipCode" class="text-danger"></span>
             </div>
 
+
+            <div hidden class="form-group">
+                <label asp-for="Balance" class="control-label"></label>
+                <input asp-for="Balance" class="form-control" />
+                <span asp-validation-for="Balance" class="text-danger"></span>
+            </div>
+
+
             <div class="form-group">
                 <label asp-for="TrashDay" class="control-label"></label>
-                <input asp-for="TrashDay" class="form-control" />
-                <span asp-validation-for="TrashDay" class="text-danger"></span>
+                <select id="TrashDay" name="TrashDay">
+                    <option value="Monday">Monday</option>
+                    <option value="Tuesday">Tuesday</option>
+                    <option value="Wednesday">Wednesday</option>
+                    <option value="Thursday">Thursday</option>
+                    <option value="Friday">Friday</option>
+                    <option value="Saturday">Saturday</option>
+                    <option value="Sunday">Sunday</option>
+
+                </select>
             </div>
+
+
+            <div hidden class="form-group">
+                <label asp-for="ExtraPickup" class="control-label"></label>
+                <select id="ExtraPickup" name="ExtraPickup">
+                    <option value="Monday">Monday</option>
+                    <option value="Tuesday">Tuesday</option>
+                    <option value="Wednesday">Wednesday</option>
+                    <option value="Thursday">Thursday</option>
+                    <option value="Friday">Friday</option>
+                    <option value="Saturday">Saturday</option>
+                    <option value="Sunday">Sunday</option>
+
+                </select>
+            </div>
+
 
             <div class="form-group">
-                <label asp-for="ExtraPickup" class="control-label"></label>
-                <input asp-for="ExtraPickup" class="form-control" />
-                <span asp-validation-for="ExtraPickup" class="text-danger"></span>
+                <label asp-for="PickupType" class="control-label"></label>
+                <select id="PickupType" name="PickupType">
+                    <option value="Trash">Trash</option>
+                    <option value="Recycle">Recycle</option>
+                    <option value="Trash/Recycle">Trash and Recycle</option>
+                    <option value="Construction Debris">Construction Debris</option>
+                    <option value="Land/Yard">Land/Yard</option>
+                </select>
             </div>
 
-            <div class="form-group form-check">
+
+            <div hidden class="form-group">
+                <label asp-for="StartSuspend" class="control-label"></label>
+                <input asp-for="StartSuspend" class="form-control" />
+                <span asp-validation-for="StartSuspend" class="text-danger"></span>
+            </div>
+
+
+            <div hidden class="form-group">
+                <label asp-for="EndSuspend" class="control-label"></label>
+                <input asp-for="EndSuspend" class="form-control" />
+                <span asp-validation-for="EndSuspend" class="text-danger"></span>
+            </div>
+
+
+            <div hidden class="form-group form-check">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="pickupComplete" /> @Html.DisplayNameFor(model => model.pickupComplete)
                 </label>
             </div>
+
+
+            <div hidden class="form-group">
+                <label asp-for="IdentityUserId" class="control-label"></label>
+                <select asp-for="IdentityUserId" class="form-control" asp-items="ViewBag.IdentityUserId"></select>
+            </div>
+
 
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TrashManagement.Data;
 
 namespace TrashManagement.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200908012608_Kefefef")]
+    partial class Kefefef
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,15 +50,15 @@ namespace TrashManagement.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "e345c9df-86a4-4b3e-ad5e-d90bf1a1d897",
-                            ConcurrencyStamp = "c35e38b8-6f11-44ad-9c2d-e5fabbf9e0e3",
+                            Id = "e08f0d10-025c-46e8-b80e-c9cf82462748",
+                            ConcurrencyStamp = "fd0cf279-3f2e-475b-bbe4-2b83186c17ef",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         },
                         new
                         {
-                            Id = "61111a4f-d586-4e96-9b10-b5b8d71aafd8",
-                            ConcurrencyStamp = "5fd6a8af-2c9e-4666-844e-37d238b33aed",
+                            Id = "aaef1f59-c17d-478e-adba-9549094f81c1",
+                            ConcurrencyStamp = "2597f2e4-dc16-4c1f-95f4-97dfa3e3ee10",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         });
@@ -240,9 +242,6 @@ namespace TrashManagement.Migrations
 
                     b.Property<double>("Balance")
                         .HasColumnType("float");
-
-                    b.Property<string>("CustomerKey")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("EndSuspend")
                         .HasColumnType("datetime2");

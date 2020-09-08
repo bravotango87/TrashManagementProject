@@ -14,6 +14,9 @@ namespace TrashManagement.Models
 
         public int Id { get; set; }
 
+        public string CustomerKey { get; set; }
+
+
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
 
